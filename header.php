@@ -26,6 +26,11 @@
 <!-- END GOOGLE ANALYTICS TRACKING CODE -->
 </head>
 <body>
-	<img style="float: left;" src="img/calc.png" alt="Age Calculator" />
-	<div id="body">
-	<h1>AGE-O-MATIC Age Calculator</h1>
+	<div id="container">
+	<header>
+		<div class="content">
+			<img style="float: left;" src="img/calc-t.png" alt="Age Calculator" title="boop beep boop - i'm a computer" />
+			<h1>AGE-O-MATIC Age Calculator</h1>
+		</div>
+	</header>
+	<section id="body" class="content">

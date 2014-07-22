@@ -7,5 +7,4 @@
 <input id="time" name="time" type="time" step=any value="12:00:30">
 	<input type="submit" value="Submit">
 </form>
-</div><!-- #body -->
 <?php require('footer.php'); ?>

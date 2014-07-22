@@ -1,27 +1,86 @@
 html, body {
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	/*background: #f6d4aa;*/
+	background: #ddd;
+	color: #333;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+a:link, a:visited, a:active, a:hover {
+	color: #333;
+	text-decoration: none;
+	border-bottom: 1px solid #333;
+}
+a:hover {
+	color: #000;
+}
+strong {
+	color: #222;
+}
+header {
+	padding: 15px 0px;
+	background: #777;
+}
+header img {
+	margin-right: 25px;
+}
+#container {
+	position: relative;
+	min-height: 100%;
+}
+.content {
 	width: 95%;
 	max-width: 960px;
-	margin: 5px auto;
+	margin: 0px auto;
 }
 #body {
+	padding-bottom: 60px;
+}
+#body div {
 	margin-left: 225px;
 }
 h1, h2, h3, h4, h5 {
 	font-weight: 100;
+	margin: .5em 0 .2em 0;
+	color: #444;
 } 
+h1 {
+	font-size: 50px;
+	margin: 0;
+	color: #eee;
+}
 h3 {
-	margin: 30px 0 0 0;
+	font-size: 30px;
 }
 h6 {
 	margin: 0;
+}
+h6:first-child {
+	margin: 10px 0 0 0;
 }
 p {
 	margin: 10px 0 5px 0;
 }
 footer {
+	position: absolute;
+	bottom: 0;
 	clear: both;
 	text-align: center;
+	color: #999;
+	background: #222;
+	margin: 20px 0 0 0;
+	padding: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	font-size: 14px;
+}
+footer a:link, footer a:visited, footer a:active {
+	border-bottom: none;
+	color: #999;
+}
+footer a:hover {
+	color: #ccc;
 }
 @media only screen and (max-device-width : 430px), only screen and (max-width : 430px) {
 	#body {
