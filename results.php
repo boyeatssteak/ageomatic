@@ -10,7 +10,6 @@
 ?>
 <h6>NOTE: I have not yet considered timezones in this revision, so for the moment, you'll need to make manual adjustments to the data submitted or retrieved to accomodate for your appropriate birth and current location timezones. My server is in the pacific timezone, where it is currently <?php echo $now->format('F j, Y h:i:sa') ?></h6>
 <div id="age">
-	<h3>THE RESULTS</h3>
 	<p>You were born <?php echo $bday->format('F j, Y') . " at " . $bday->format('h:i:sa') ?>.</p>
 	<h6>Not you? You can <a href="index.php">start over here</a>.</h6>
 	<p>As of <?php echo $now->format('F j, Y') . " at " . $now->format('h:i:sa') ?>, you are <strong><?php echo $bday->age($now, '3', $secsIn); ?></strong> old.</p>

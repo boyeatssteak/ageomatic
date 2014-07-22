@@ -29,8 +29,10 @@
 	<div id="container">
 	<header>
 		<div class="content">
-			<img style="float: left;" src="img/calc-t.png" alt="Age Calculator" title="boop beep boop - i'm a computer" />
-			<h1>AGE-O-MATIC Age Calculator</h1>
+			<img style="float: left;" src="img/calc-ffc25c.png" alt="Age Calculator" title="boop beep boop - i'm a computer" />
+			<h1>AGE-O-MATIC</h1>
 		</div>
 	</header>
-	<section id="body" class="content">
+	<section id="body">
+		<div class="content">
+			<h2>Age Calculator</h2>
