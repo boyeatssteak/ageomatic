@@ -1,0 +1,30 @@
+html, body {
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	width: 95%;
+	max-width: 960px;
+	margin: 5px auto;
+}
+#body {
+	margin-left: 225px;
+}
+h1, h2, h3, h4, h5 {
+	font-weight: 100;
+} 
+h3 {
+	margin: 30px 0 0 0;
+}
+h6 {
+	margin: 0;
+}
+p {
+	margin: 10px 0 5px 0;
+}
+footer {
+	clear: both;
+	text-align: center;
+}
+@media only screen and (max-device-width : 430px), only screen and (max-width : 430px) {
+	#body {
+		margin-left: 0px; clear: both;
+	}
+}
