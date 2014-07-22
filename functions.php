@@ -48,7 +48,7 @@ class Birthday extends DateTime { // these probably could have been added to the
 				$output = ($when->getTimestamp() - $temp->getTimestamp()) / $secsIn[$units][0];
 			}
 		}
-		if($units < 5) {
+		if($units < 4) {
 			if(round($output) != 1) {
 				return number_format($output, 0, ".", ",") . " " . $secsIn[$units][1] . "s";
 			} else {
