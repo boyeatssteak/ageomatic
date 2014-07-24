@@ -1,6 +1,13 @@
 		</div><!-- .content -->
 	</section><!-- #body -->
 	<footer>
+		<?php if($_GET) { ?>
+			<section id="timezones">
+				<div class="content">
+					<h6>NOTE: I have not yet made the necessary updates to accommodate timezones in this revision, so for the time being, you'll need to make manual adjustments to the data submitted or retrieved to accommodate for your start and current location timezones. My server is in the Pacific timezone, where it is currently <?php echo $now->format('F j, Y h:i:sa') ?></h6>
+				</div>
+			</section>
+		<?php } ?>
 		<section id="share" class="content">
 			<div id="facebook">
 				<div id="fb-root"></div>
@@ -27,7 +34,11 @@
 			<a href="https://twitter.com/boy_eats_steak"><img src="img/twitter.png" /></a>&nbsp;
 			<a href="https://github.com/sevx/ageomatic"><img src="img/github-mark.png" /></a>
 		</section>
-		<script>$('footer #share').css('margin-right', 0 - ($('footer #contact').outerWidth()) + 'px');</script>
+		<script>
+			$('#body').css('padding-top', ($('header').outerHeight()) + 'px');
+			$('#body').css('padding-bottom', ($('footer').outerHeight() + 20 + 'px'));
+			$('footer #share').css('margin-right', 0 - ($('footer #contact').outerWidth()) + 'px');
+		</script>
 	</footer>
 	</div><!-- #container -->
 </body>

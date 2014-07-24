@@ -19,30 +19,6 @@ a:hover {
 strong {
 	color: #222;
 }
-header {
-	padding: 14px 0px;
-	background: #ffc25c;
-	border-bottom: 1px solid #ffac51;
-}
-header img {
-	margin-right: 25px;
-}
-#container {
-	position: relative;
-	min-height: 100%;
-}
-.content {
-	width: 95%;
-	max-width: 960px;
-	margin: 0px auto;
-}
-#body {
-	padding-bottom: 70px;
-	border-top: 1px solid #ccc;
-}
-#body div div {
-	margin-left: 225px;
-}
 h1, h2, h3, h4, h5 {
 	font-weight: 100;
 	margin: .5em 0 .2em 0;
@@ -64,26 +40,62 @@ h3 {
 h3.age {
 	font-size: 50px;
 	font-weight: 100;
+	margin-top: 0;
 }
 h6 {
 	margin: 0;
 }
-h6:first-child {
-	margin: 10px 0 0 0;
-}
 p {
 	margin: 10px 0 5px 0;
+}
+header {
+	padding: 14px 0px;
+	background: #ffc25c;
+	border-bottom: 1px solid #ffac51;
+	position: fixed;
+	width: 100%;
+	height: 88px;
+	box-sizing: border-box;
+}
+header img {
+	margin-right: 25px;
+	float: left;
+}
+#container {
+	position: relative;
+	min-height: 100%;
+}
+.content {
+	width: 95%;
+	max-width: 960px;
+	margin: 0px auto;
+}
+#body {
+	padding-top: 88px;
+	border-top: 1px solid #ccc;
+}
+#body div div {
+	margin-left: 225px;
+}
+table {
+	margin-left: 50px;
+}
+section#timezones {
+	background: #ccc;
+	padding: 10px 0;
+	width: 100%;
 }
 footer {
 	position: absolute;
 	bottom: 0;
-	text-align: center;
-	color: #999;
-	background: #222;
 	width: 100%;
 	box-sizing: border-box;
+	background: #222;
+	text-align: center;
+}
+footer #share {
+	color: #999;
 	font-size: 14px;
-	border-top: 2px solid #222;
 }
 footer a:link, footer a:visited, footer a:active {
 	border-bottom: none;
@@ -119,14 +131,46 @@ footer #share>div#tell {
 	top: -6px;
 	text-transform: uppercase;
 	font-size: 12px;
-	margin: 0 5px;
 }
 footer #share>div#facebook {
 	position: relative;
 	top: -3px;
+	margin: 0 5px;
+}
+footer #share>div#twitter {
+	margin: 0 5px;
 }
 @media only screen and (max-device-width : 430px), only screen and (max-width : 430px) {
+	header {
+		height: 70px;
+	}
+	header img {
+		margin-right: 10px;
+		height: 43px;
+	}
+	h1 {
+		font-size: 35px;
+	}
+	h2 {
+		font-size: 28px;
+	}
 	#body {
-		margin-left: 0px; clear: both;
+		margin-left: 0px;
+		clear: both;
+	}
+	#body div div {
+		margin-left: 0;
+	}
+	table {
+		margin: 0 auto;
+		padding: 0 15px 0 0;
+		max-width: 90%;
+	}
+	footer #share>div#tell {
+		display: none;
+	}
+	footer #share {
+		position: relative;
+		left: -8%;
 	}
 }

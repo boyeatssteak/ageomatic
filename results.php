@@ -1,14 +1,14 @@
 <?php require('header.php'); ?>
-<?php require('functions.php'); ?>
-<?php
-	if($bday > $now) { // if user inputs $bday as later than current date/time
-		echo "<h3>Oh dear me...</h3>";
-		echo "<p>It appears that you've discovered time travel, and were born at some point after what my associates and I frequently refer to as &quot;now&quot;. If you don't remember traveling through time, perhaps you would you care to <a href='index.php'>enter another date</a>?</p>";
-		echo "<style type='text/css'>#age { display: none; }</style>"; // hides results since they would not be accurate
-		echo "<p>You selected " . $bday->format('F j, Y') . " at " . $bday->format('h:i:sa') . ".</p>";
-	}
-?>
-<h6>NOTE: I have not yet made the necessary updates to accommodate timezones in this revision, so for the time being, you'll need to make manual adjustments to the data submitted or retrieved to accommodate for your start and current location timezones. My server is in the Pacific timezone, where it is currently <?php echo $now->format('F j, Y h:i:sa') ?></h6>
+	<?php require('functions.php'); ?>
+	<?php
+		if($bday > $now) { // if user inputs $bday as later than current date/time
+			echo "<h3>Oh dear me...</h3>";
+			echo "<p>It appears that you've discovered time travel, and were born at some point after what my associates and I frequently refer to as &quot;now&quot;. If you don't remember traveling through time, perhaps you would you care to <a href='index.php'>enter another date</a>?</p>";
+			echo "<style type='text/css'>#age { display: none; }</style>"; // hides results since they would not be accurate
+			echo "<p>You selected " . $bday->format('F j, Y') . " at " . $bday->format('h:i:sa') . ".</p>";
+		}
+	?>
+</div>
 <div id="age">
 	<h3 class="age"><strong><?php echo $bday->age($now, '3', $secsIn); ?></strong> old</h3>
 	<p>Age calculated on <?php echo $now->format('F j, Y') . " at " . $now->format('h:i:sa') ?> from a start date of <?php echo $bday->format('F j, Y') . " at " . $bday->format('h:i:sa') ?>.</p>
@@ -43,6 +43,7 @@
 		<input id="bday" name="bday" type="hidden" value="<?php echo $_GET ['bday']; ?>">
 		<input id="time" name="time" type="hidden" value="<?php echo $_GET ['time']; ?>">
 		<select id="in" name="in">
+			<option value="-1">Select</option>
 			<?php
 				for($i = 0; $i < count($secsIn); $i++) {
 					echo "<option value='" . $i . "'>" . $secsIn[$i][1] . "s</option>";
@@ -56,7 +57,7 @@
 	<table>
 		<tbody>
 			<?php
-				if(!empty($_GET['in'])) {
+				if($_GET['in'] >= 0 && $_GET['in'] != "") {
 					$in = ($_GET['in']);
 					for ($i = 0; $i < count($funIncs); $i++) {
 						$dateArray = $bday->dateAfter($funIncs[$i], $in, $daysIn, $secsIn);
