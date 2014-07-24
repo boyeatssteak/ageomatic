@@ -40,6 +40,8 @@
 	. You can <a href="http://www.letterxdesign.com/contact.html">let me know</a> if you think I've missed any noteworthy quantities</h6>
 	<form method="GET" action="">
 		<label for="in">Show me this ridiculousness in</label>
+		<input id="bday" name="bday" type="hidden" value="<?php echo $_GET ['bday']; ?>">
+		<input id="time" name="time" type="hidden" value="<?php echo $_GET ['time']; ?>">
 		<select id="in" name="in">
 			<?php
 				for($i = 0; $i < count($secsIn); $i++) {
@@ -47,10 +49,8 @@
 				}
 			?>
 		</select>
-		<input id="bday" name="bday" type="hidden" value="<?php echo $_GET ['bday']; ?>">
-		<input id="time" name="time" type="hidden" value="<?php echo $_GET ['time']; ?>">
 		<input id="thisMany" name="thisMany" type="hidden" value="<?php echo $_GET ['thisMany']; ?>">
-		<button type="submit" name="inSelector">&#10148;</button>
+		<button type="submit">&#10148;</button>
 		
 	</form>
 	<table>
@@ -72,11 +72,11 @@
 	<p>If you'd like the date and time a certain number of somethings from your start date, just type in that number here:</p>
 	<form method="GET" action="">
 		<label for="thisMany">Drumroll please:</label>
-		<input type="text" id="thisMany" name="thisMany" required>
 		<input id="bday" name="bday" type="hidden" value="<?php echo $_GET ['bday']; ?>">
 		<input id="time" name="time" type="hidden" value="<?php echo $_GET ['time']; ?>">
 		<input id="in" name="in" type="hidden" value="<?php echo $_GET ['in']; ?>">
-		<button type="submit" name="customDay">My Favorite!</button>
+		<input type="text" id="thisMany" name="thisMany" required>
+		<button type="submit">My Favorite!</button>
 	</form>
 	<?php 
 	$thisManyActual = $_GET['thisMany'];
