@@ -8,7 +8,7 @@
 		echo "<p>You selected " . $bday->format('F j, Y') . " at " . $bday->format('h:i:sa') . ".</p>";
 	}
 ?>
-<h6>NOTE: I have not yet considered timezones in this revision, so for the moment, you'll need to make manual adjustments to the data submitted or retrieved to accomodate for your appropriate birth and current location timezones. My server is in the Pacific timezone, where it is currently <?php echo $now->format('F j, Y h:i:sa') ?></h6>
+<h6>NOTE: I have not yet made the necessary updates to accommodate timezones in this revision, so for the time being, you'll need to make manual adjustments to the data submitted or retrieved to accommodate for your start and current location timezones. My server is in the Pacific timezone, where it is currently <?php echo $now->format('F j, Y h:i:sa') ?></h6>
 <div id="age">
 	<h3 class="age"><strong><?php echo $bday->age($now, '3', $secsIn); ?></strong> old</h3>
 	<p>Age calculated on <?php echo $now->format('F j, Y') . " at " . $now->format('h:i:sa') ?> from a start date of <?php echo $bday->format('F j, Y') . " at " . $bday->format('h:i:sa') ?>.</p>
@@ -18,7 +18,7 @@
 		<tbody>
 			<?php
 				for ($i = 0; $i < count($secsIn); $i++) {
-					echo "<tr><td align='right'>" . $bday->age($now, $i, $secsIn) . "</td></tr>";
+					echo "<tr><td align='right'><strong>" . $bday->age($now, $i, $secsIn) . "</strong> old!</td></tr>";
 				}
 			?>
 		</tbody>
@@ -26,7 +26,7 @@
 </div><!-- #age -->
 <div id="dates">
 	<h3>(IN)SIGNIFICANT DATES</h3>
-	<p>For no reason in particular, you can also see some dates and their associated significant quantities of units after your birth.</p>
+	<p>For no reason in particular, you can also see some dates and their associated significant quantities of units after your selected start date.</p>
 	<h6>Current significant quantities are 
 	<?php
 		for($i = 0; $i < count($funIncs); $i++) {
@@ -69,7 +69,7 @@
 </div><!-- #dates -->
 <div id="favorite">
 	<h3>HAVE A FAVORITE NUMBER?</h3>
-	<p>If you'd like to know when you'll be some certain number of somethings old, just type in the number here:</p>
+	<p>If you'd like the date and time a certain number of somethings from your start date, just type in that number here:</p>
 	<form method="GET" action="">
 		<label for="thisMany">Drumroll please:</label>
 		<input type="text" id="thisMany" name="thisMany" required>
