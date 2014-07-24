@@ -29,13 +29,15 @@
 </head>
 <body>
 	<div id="container">
-	<header>
-		<div class="content">
-			<img src="img/calc-ffc25c.png" alt="Age Calculator" title="boop beep boop - i'm a computer" />
-			<h1>AGE-O-MATIC</h1>
-		</div>
-	</header>
-	<section id="body">
-		<div class="content">
-			<div id="intro">
-				<h2>Age Calculator</h2>
+		<a href="//letterxdesign.com/apex/ageomatic">
+		<header>
+			<div class="content">
+				<img src="img/calc-ffc25c.png" alt="Age Calculator" title="boop beep boop - i'm a computer" />
+				<h1>AGE-O-MATIC</h1>
+			</div>
+		</header>
+		</a>
+		<section id="body">
+			<div class="content">
+				<div id="intro">
+					<h2>Age Calculator</h2>

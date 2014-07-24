@@ -38,7 +38,7 @@
 		}
 	?>
 	. You can <a href="http://www.letterxdesign.com/contact.html">let me know</a> if you think I've missed any noteworthy quantities</h6>
-	<form method="GET" action="">
+	<form method="GET" action="#dates">
 		<label for="in">Show me this ridiculousness in</label>
 		<input id="bday" name="bday" type="hidden" value="<?php echo $_GET ['bday']; ?>">
 		<input id="time" name="time" type="hidden" value="<?php echo $_GET ['time']; ?>">
@@ -71,7 +71,7 @@
 <div id="favorite">
 	<h3>HAVE A FAVORITE NUMBER?</h3>
 	<p>If you'd like the date and time a certain number of somethings from your start date, just type in that number here:</p>
-	<form method="GET" action="">
+	<form method="GET" action="#favorite">
 		<label for="thisMany">Drumroll please:</label>
 		<input id="bday" name="bday" type="hidden" value="<?php echo $_GET ['bday']; ?>">
 		<input id="time" name="time" type="hidden" value="<?php echo $_GET ['time']; ?>">
