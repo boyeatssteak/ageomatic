@@ -38,7 +38,7 @@
 		}
 	?>
 	. You can <a href="http://www.letterxdesign.com/contact.html">let me know</a> if you think I've missed any noteworthy quantities</h6>
-	<form method="POST" action="">
+	<form method="GET" action="">
 		<label for="in">Show me this ridiculousness in</label>
 		<select id="in" name="in">
 			<?php
@@ -47,13 +47,17 @@
 				}
 			?>
 		</select>
-		<input type="submit" name="inSelector" value="&#10148;">
+		<input id="bday" name="bday" type="hidden" value="<?php echo $_GET ['bday']; ?>">
+		<input id="time" name="time" type="hidden" value="<?php echo $_GET ['time']; ?>">
+		<input id="thisMany" name="thisMany" type="hidden" value="<?php echo $_GET ['thisMany']; ?>">
+		<button type="submit" name="inSelector">&#10148;</button>
+		
 	</form>
 	<table>
 		<tbody>
 			<?php
-				if(!empty($_POST['inSelector'])) {
-					$in = ($_POST['in']);
+				if(!empty($_GET['in'])) {
+					$in = ($_GET['in']);
 					for ($i = 0; $i < count($funIncs); $i++) {
 						$dateArray = $bday->dateAfter($funIncs[$i], $in, $daysIn, $secsIn);
 						echo "<tr><td>You " . $dateArray[1] . " <strong>" . number_format($funIncs[$i]) . " " . $secsIn[$in][1] . "s</strong> old on " . $dateArray[0] . "</td></tr>";
@@ -66,27 +70,35 @@
 <div id="favorite">
 	<h3>HAVE A FAVORITE NUMBER?</h3>
 	<p>If you'd like to know when you'll be some certain number of somethings old, just type in the number here:</p>
-	<form method="POST" action="">
+	<form method="GET" action="">
 		<label for="thisMany">Drumroll please:</label>
 		<input type="text" id="thisMany" name="thisMany" required>
-		<input type="submit" name="customDay" value="My Favorite!">
+		<input id="bday" name="bday" type="hidden" value="<?php echo $_GET ['bday']; ?>">
+		<input id="time" name="time" type="hidden" value="<?php echo $_GET ['time']; ?>">
+		<input id="in" name="in" type="hidden" value="<?php echo $_GET ['in']; ?>">
+		<button type="submit" name="customDay">My Favorite!</button>
 	</form>
 	<?php 
-	if(isset($_POST['customDay'])) {
-		$thisMany = round($_POST['thisMany']);
-		echo "<table><tbody>";
-		if ($thisMany != 1) {
-			for ($i = 0; $i < count($daysIn); $i++) {
-				$dateArray = $bday->dateAfter($thisMany, $i, $daysIn, $secsIn);
-				echo "<tr><td>You " . $dateArray[1] . " <strong>" . number_format($thisMany, 0, ".", ",") . " " . $secsIn[$i][1] . "s</strong> old on " . $dateArray[0] . "</td>";
-			}
+	$thisManyActual = $_GET['thisMany'];
+	if ($thisManyActual != 0) {
+		if ($thisManyActual < 1) {
+			echo "<p>Really? Your favorite number is " . $thisManyActual . "? Come on... you gotta pick a number greater than 1.</p>";
 		} else {
-			for ($i = 0; $i < count($daysIn); $i++) {
-				$dateArray = $bday->dateAfter($thisMany, $i, $daysIn, $secsIn);
-				echo "<tr><td>You " . $dateArray[1] . " <strong>" . number_format($thisMany, 0, ".", ",") . " " . $secsIn[$i][1] . "</strong> old on " . $dateArray[0] . "</td>";
+			$thisMany = round($_GET['thisMany']);
+			echo "<table><tbody>";
+			if ($thisMany != 1) {
+				for ($i = 0; $i < count($daysIn); $i++) {
+					$dateArray = $bday->dateAfter($thisMany, $i, $daysIn, $secsIn);
+					echo "<tr><td>You " . $dateArray[1] . " <strong>" . number_format($thisMany, 0, ".", ",") . " " . $secsIn[$i][1] . "s</strong> old on " . $dateArray[0] . "</td>";
+				}
+			} else {
+				for ($i = 0; $i < count($daysIn); $i++) {
+					$dateArray = $bday->dateAfter($thisMany, $i, $daysIn, $secsIn);
+					echo "<tr><td>You " . $dateArray[1] . " <strong>" . number_format($thisMany, 0, ".", ",") . " " . $secsIn[$i][1] . "</strong> old on " . $dateArray[0] . "</td>";
+				}
 			}
+			echo "</tbody></table>";
 		}
-		echo "</tbody></table>";
 	}
 	?>
 </div><!-- #favorite -->
