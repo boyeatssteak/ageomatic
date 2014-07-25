@@ -77,6 +77,12 @@ header img {
 #body div div {
 	margin-left: 225px;
 }
+form#start {
+	margin-left: 50px;
+}
+form#start input {
+	margin: 5px 0;
+}
 table {
 	margin-left: 50px;
 }

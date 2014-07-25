@@ -80,7 +80,7 @@ class Birthday extends DateTime { // these probably could have been added to the
 		if ($temp > $now) {
 			$tense = "will be";
 		} else {
-			$tense = "is";
+			$tense = "was";
 		}
 		$output = array(
 			$temp->format('F j, Y h:i:sa'),

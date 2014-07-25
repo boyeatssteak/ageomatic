@@ -29,7 +29,7 @@
 </head>
 <body>
 	<div id="container">
-		<a href="//letterxdesign.com/apex/ageomatic">
+		<a href="index.php">
 		<header>
 			<div class="content">
 				<img src="img/calc-ffc25c.png" alt="Age Calculator" title="boop beep boop - i'm a computer" />

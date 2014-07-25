@@ -1,6 +1,11 @@
 <?php require('header.php'); ?>
 	<?php require('functions.php'); ?>
 	<?php
+		if(empty($_GET['name'])) {
+			$name = "It";
+		} else {
+			$name = $_GET['name'];
+		}
 		if($bday > $now) { // if user inputs $bday as later than current date/time
 			echo "<h3>Oh dear me...</h3>";
 			echo "<p>It appears that you've discovered time travel, and were born at some point after what my associates and I frequently refer to as &quot;now&quot;. If you don't remember traveling through time, perhaps you would you care to <a href='index.php'>enter another date</a>?</p>";
@@ -13,7 +18,7 @@
 	<h3 class="age"><strong><?php echo $bday->age($now, '3', $secsIn); ?></strong> old</h3>
 	<p>Age calculated on <?php echo $now->format('F j, Y') . " at " . $now->format('h:i:sa') ?> from a start date of <?php echo $bday->format('F j, Y') . " at " . $bday->format('h:i:sa') ?>.</p>
 	<h6>Not the right info? You can <a href="index.php">start over here</a>.</h6>
-	<p>Inconvenient units abound!</p>
+	<p>Inconvenient units abound! <?php echo $name; ?> is...</p>
 	<table>
 		<tbody>
 			<?php
@@ -39,9 +44,10 @@
 	?>
 	. You can <a href="http://www.letterxdesign.com/contact.html">let me know</a> if you think I've missed any noteworthy quantities</h6>
 	<form method="GET" action="#dates">
-		<label for="in">Show me this ridiculousness in</label>
+		<input id="name" name="name" type="hidden" value="<?php echo $_GET ['name']; ?>">
 		<input id="bday" name="bday" type="hidden" value="<?php echo $_GET ['bday']; ?>">
 		<input id="time" name="time" type="hidden" value="<?php echo $_GET ['time']; ?>">
+		<label for="in">Show me this ridiculousness in</label>
 		<select id="in" name="in">
 			<option value="-1">Select</option>
 			<?php
@@ -52,7 +58,6 @@
 		</select>
 		<input id="thisMany" name="thisMany" type="hidden" value="<?php echo $_GET ['thisMany']; ?>">
 		<button type="submit">&#10148;</button>
-		
 	</form>
 	<table>
 		<tbody>
@@ -61,7 +66,7 @@
 					$in = ($_GET['in']);
 					for ($i = 0; $i < count($funIncs); $i++) {
 						$dateArray = $bday->dateAfter($funIncs[$i], $in, $daysIn, $secsIn);
-						echo "<tr><td>It " . $dateArray[1] . " <strong>" . number_format($funIncs[$i]) . " " . $secsIn[$in][1] . "s</strong> old on " . $dateArray[0] . "</td></tr>";
+						echo "<tr><td>" . $name . " " . $dateArray[1] . " <strong>" . number_format($funIncs[$i]) . " " . $secsIn[$in][1] . "s</strong> old on " . $dateArray[0] . "</td></tr>";
 					}
 				}
 			?>
@@ -72,10 +77,11 @@
 	<h3>HAVE A FAVORITE NUMBER?</h3>
 	<p>If you'd like the date and time a certain number of somethings from your start date, just type in that number here:</p>
 	<form method="GET" action="#favorite">
-		<label for="thisMany">Drumroll please:</label>
+		<input id="name" name="name" type="hidden" value="<?php echo $_GET ['name']; ?>">
 		<input id="bday" name="bday" type="hidden" value="<?php echo $_GET ['bday']; ?>">
 		<input id="time" name="time" type="hidden" value="<?php echo $_GET ['time']; ?>">
 		<input id="in" name="in" type="hidden" value="<?php echo $_GET ['in']; ?>">
+		<label for="thisMany">Drumroll please:</label>
 		<input type="tel" id="thisMany" name="thisMany" required>
 		<button type="submit">My Favorite!</button>
 	</form>
@@ -90,7 +96,7 @@
 			if ($thisMany != 1) {
 				for ($i = 0; $i < count($daysIn); $i++) {
 					$dateArray = $bday->dateAfter($thisMany, $i, $daysIn, $secsIn);
-					echo "<tr><td>It " . $dateArray[1] . " <strong>" . number_format($thisMany, 0, ".", ",") . " " . $secsIn[$i][1] . "s</strong> old on " . $dateArray[0] . "</td>";
+					echo "<tr><td>" . $name . " " . $dateArray[1] . " <strong>" . number_format($thisMany, 0, ".", ",") . " " . $secsIn[$i][1] . "s</strong> old on " . $dateArray[0] . "</td>";
 				}
 			} else {
 				for ($i = 0; $i < count($daysIn); $i++) {
