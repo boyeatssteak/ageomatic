@@ -37,7 +37,7 @@
 		<input id="time" name="time" type="hidden" value="<?php echo $_GET ['time']; ?>">
 		<label for="in">Show me this ridiculousness in</label>
 		<select id="in" name="in">
-			<option value="-1">Select</option>
+			<!-- <option value="-1">Select</option> -->
 			<?php
 				for($i = 0; $i < count($secsIn); $i++) {
 					echo "<option value='" . $i . "'>" . $secsIn[$i][1] . "s</option>";
@@ -50,17 +50,19 @@
 	<table>
 		<tbody>
 			<?php
-				$unitsOld = $bday->ageNumOnly($now, $in, $secsIn);
-				$i = 0;
-				do {
-					$i++;
-				} while ($funIncs[$i] < $unitsOld);
-				$n = $i + 3;
-				do {
-					$dateArray = $bday->dateAfter($funIncs[$i], $in, $daysIn, $secsIn);
-					echo "<tr><td>" . $name . " " . $dateArray[1] . " <strong>" . number_format($funIncs[$i]) . " " . $secsIn[$in][1] . "s</strong> old on " . $dateArray[0] . "</td></tr>";
-					$i++;
-				} while ($i < $n && $i < count($funIncs));
+				if($in >= 0 && $in <= 6) {
+					$unitsOld = $bday->ageNumOnly($now, $in, $secsIn);
+					$i = 0;
+					do {
+						$i++;
+					} while ($funIncs[$i] < $unitsOld);
+					$n = $i + 3;
+					do {
+						$dateArray = $bday->dateAfter($funIncs[$i], $in, $daysIn, $secsIn);
+						echo "<tr><td>" . $name . " " . $dateArray[1] . " <strong>" . number_format($funIncs[$i]) . " " . $secsIn[$in][1] . "s</strong> old on " . $dateArray[0] . "</td></tr>";
+						$i++;
+					} while ($i < $n && $i < count($funIncs));
+				};
 			?>
 		</tbody>
 	</table>
@@ -80,8 +82,8 @@
 	<?php 
 	$thisManyActual = $_GET['thisMany'];
 	if ($thisManyActual != 0) {
-		if ($thisManyActual < 1) {
-			echo "<p>Really? Your favorite number is " . $thisManyActual . "? Come on... you gotta pick a number greater than 1.</p>";
+		if ($thisManyActual < 1 || $thisManyActual > 100000000000) {
+			echo "<p>Really? Your favorite number is " . $thisManyActual . "? Come on... you gotta pick a number between 1 and 100,000,000,000.</p>";
 		} else {
 			$thisMany = round($_GET['thisMany']);
 			echo "<table><tbody>";

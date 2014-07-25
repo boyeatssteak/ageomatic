@@ -9,7 +9,7 @@
 	<input id="time" name="time" type="time" step=any value="12:00:30"><br />
 	<label for="in">Favorite Units:</label>
 	<select id="in" name="in">
-		<option value="-1">Select</option>
+		<!-- <option value="-1">Select</option> -->
 		<?php
 			for($i = 0; $i < count($secsIn); $i++) {
 				if($i == 3) {
