@@ -61,7 +61,7 @@
 					$in = ($_GET['in']);
 					for ($i = 0; $i < count($funIncs); $i++) {
 						$dateArray = $bday->dateAfter($funIncs[$i], $in, $daysIn, $secsIn);
-						echo "<tr><td>You " . $dateArray[1] . " <strong>" . number_format($funIncs[$i]) . " " . $secsIn[$in][1] . "s</strong> old on " . $dateArray[0] . "</td></tr>";
+						echo "<tr><td>It " . $dateArray[1] . " <strong>" . number_format($funIncs[$i]) . " " . $secsIn[$in][1] . "s</strong> old on " . $dateArray[0] . "</td></tr>";
 					}
 				}
 			?>
@@ -90,7 +90,7 @@
 			if ($thisMany != 1) {
 				for ($i = 0; $i < count($daysIn); $i++) {
 					$dateArray = $bday->dateAfter($thisMany, $i, $daysIn, $secsIn);
-					echo "<tr><td>You " . $dateArray[1] . " <strong>" . number_format($thisMany, 0, ".", ",") . " " . $secsIn[$i][1] . "s</strong> old on " . $dateArray[0] . "</td>";
+					echo "<tr><td>It " . $dateArray[1] . " <strong>" . number_format($thisMany, 0, ".", ",") . " " . $secsIn[$i][1] . "s</strong> old on " . $dateArray[0] . "</td>";
 				}
 			} else {
 				for ($i = 0; $i < count($daysIn); $i++) {
