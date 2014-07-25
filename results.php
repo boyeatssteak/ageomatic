@@ -28,9 +28,13 @@
 		</tbody>
 	</table>
 </div><!-- #age -->
+<?php
+	$unitsOld = $bday->ageNumOnly($now, $in, $secsIn);
+	if(!($unitsOld > $funIncs[count($funIncs) - 1])) {
+?>
 <div id="dates">
 	<h3>COMING SOON</h3>
-	<p>For no reason in particular, you can also see the upcoming dates where <?php echo $name; ?> will be some significant number of <?php echo $secsIn[$in][1]; ?>s old.</p>
+	<p>For no reason in particular, here are some upcoming dates where <?php echo $name; ?> will be some significant number of <?php echo $secsIn[$in][1]; ?>s old.</p>
 	<form method="GET" action="#dates">
 		<input id="name" name="name" type="hidden" value="<?php echo $_GET ['name']; ?>">
 		<input id="bday" name="bday" type="hidden" value="<?php echo $_GET ['bday']; ?>">
@@ -50,8 +54,6 @@
 	<table>
 		<tbody>
 			<?php
-				if($in >= 0 && $in <= 6) {
-					$unitsOld = $bday->ageNumOnly($now, $in, $secsIn);
 					$i = 0;
 					do {
 						$i++;
@@ -62,11 +64,11 @@
 						echo "<tr><td>" . $name . " " . $dateArray[1] . " <strong>" . number_format($funIncs[$i]) . " " . $secsIn[$in][1] . "s</strong> old on " . $dateArray[0] . "</td></tr>";
 						$i++;
 					} while ($i < $n && $i < count($funIncs));
-				};
 			?>
 		</tbody>
 	</table>
 </div><!-- #dates -->
+<?php }; ?>
 <div id="favorite">
 	<h3>HAVE A FAVORITE NUMBER?</h3>
 	<p>If you'd like the date and time a certain number of somethings from your start date, just type in that number here:</p>
@@ -83,7 +85,7 @@
 	$thisManyActual = $_GET['thisMany'];
 	if ($thisManyActual != 0) {
 		if ($thisManyActual < 1 || $thisManyActual > 100000000000) {
-			echo "<p>Really? Your favorite number is " . $thisManyActual . "? Come on... you gotta pick a number between 1 and 100,000,000,000.</p>";
+			echo "<p>Gasp! Your favorite number is " . $thisManyActual . "!? I'm not sure how to calculate that, please pick a number between 1 and 100,000,000,000.</p>";
 		} else {
 			$thisMany = round($_GET['thisMany']);
 			echo "<table><tbody>";
