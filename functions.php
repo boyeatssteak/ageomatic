@@ -112,7 +112,7 @@ class Birthday extends DateTime { // these probably could have been added to the
 $funIncs = array( // significant increments - can be adjusted so that (IN)SIGNIFICANT section returns desired increments
 	0,
 	1,
-	3.14,
+	5,
 	10,
 	100,
 	111,
