@@ -8,8 +8,8 @@ $secsIn = array( // quantity of seconds for 1 unit, and the unit name
 	array(60 * 60, "hour"),
 	array(60 * 60 * 24, "day"),
 	array(60 * 60 * 24 * 7, "week"),
-	array(60 * 60 * 24 * 7 * 4.35, "month"),
-	array(60 * 60 * 24 * 7 * 4.35 * 12, "year")
+	array(60 * 60 * 24 * 365.25 / 12, "month"),
+	array(60 * 60 * 24 * 365.25, "year")
 );
 $daysIn = array( // quantity of days for 1 unit, and the unit name
 	array(1 * 24 * 60 * 60, "second"),
@@ -17,8 +17,8 @@ $daysIn = array( // quantity of days for 1 unit, and the unit name
 	array(1 * 24, "hour"),
 	array(1, "day"),
 	array(1 / 7, "week"),
-	array(1 / 7 / 4.35, "month"),
-	array(1 / 7 / 4.35 / 12, "year")	
+	array(365.25 / 12, "month"),
+	array(365.25, "year")
 );
 class Birthday extends DateTime { // these probably could have been added to the DateTime object model...
 	public function sToMidnight() { // determines the qty of seconds after birth to following midnight.
