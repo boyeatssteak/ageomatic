@@ -41,12 +41,15 @@
 		<input id="time" name="time" type="hidden" value="<?php echo $_GET ['time']; ?>">
 		<label for="in">Show me this ridiculousness in</label>
 		<select id="in" name="in">
-			<!-- <option value="-1">Select</option> -->
 			<?php
-				for($i = 0; $i < count($secsIn); $i++) {
+			for($i = 0; $i < count($secsIn); $i++) {
+				if($i == $in) {
+					echo "<option value='" . $i . "' selected>" . $secsIn[$i][1] . "s</option>";
+				} else {
 					echo "<option value='" . $i . "'>" . $secsIn[$i][1] . "s</option>";
 				}
-			?>
+			}
+		?>
 		</select>
 		<input id="thisMany" name="thisMany" type="hidden" value="<?php echo $_GET ['thisMany']; ?>">
 		<button type="submit">&#10148;</button>
