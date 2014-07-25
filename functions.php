@@ -1,6 +1,7 @@
 <?php
 $bday = new Birthday ($_GET ['bday'] . " " . $_GET ['time']); //assigns user input to a DateTime object
 $now = new DateTime ("now"); // creates a new DateTime object for the current time/date
+$in = $_GET['in']; // selects units
 $secsIn = array( // quantity of seconds for 1 unit, and the unit name
 	array(1, "second"),
 	array(60, "minute"),
@@ -62,6 +63,25 @@ class Birthday extends DateTime { // these probably could have been added to the
 			}
 		}
 	}
+	public function ageNumOnly($when, $units, $secsIn) { // determines age and returns in $units (specified as an index of $secsIn). Included $secsIn as parameter because I don't know how to access that variable from inside this object.
+		$temp = clone $this;
+		if ($temp::diff($when)->format('%a') > 0) { // most cases, when $bday is more than 24 hours from $when
+			$daysBetween = $temp::diff($when)->format('%a') - 1; // -1 since addings seconds manually for fractional days $bday and $when
+			$output = (($daysBetween * 24 * 60 * 60) + $this->sToMidnight() + $this->sSinceMidnight($when)) / $secsIn[$units][0];
+		} else { // when $bday is less than 24 hours from $when
+			if($temp->format('d') < $when->format('d')) { // if $bday and $when are different days
+				$daysBetween = 0;
+				$output = (($daysBetween * 24 * 60 * 60) + $this->sToMidnight() + $this->sSinceMidnight($when)) / $secsIn[$units][0];
+			} else { // if $bday and $when are same day
+				$output = ($when->getTimestamp() - $temp->getTimestamp()) / $secsIn[$units][0];
+			}
+		}
+		if($units < 4) {
+			return round($output);
+		} else {
+			return round($output, 2);
+		}
+	}
 	public function dateAfter($increment, $units, $daysIn, $secsIn) { // determines date after user provided $increment number in a variety of $units. Included $secsIn/$daysIn as parameter because I don't know how to access that variable from inside this object.
 		$now = new DateTime ("now");
 		$temp = clone $this;
@@ -90,13 +110,78 @@ class Birthday extends DateTime { // these probably could have been added to the
 	}
 }
 $funIncs = array( // significant increments - can be adjusted so that (IN)SIGNIFICANT section returns desired increments
+	0,
+	1,
+	3.14,
+	10,
+	100,
+	111,
+	123,
+	200,
+	222,
+	300,
+	333,
+	400,
+	444,
+	500,
+	555,
+	600,
+	700,
+	777,
+	800,
+	888,
+	900,
 	1000,
+	1111,
+	1234,
+	2000,
+	2222,
+	3000,
+	3333,
+	4000,
+	4444,
 	5000,
+	5555,
+	6000,
+	7000,
+	7777,
+	8000,
+	8888,
+	9000,
 	10000,
+	12345,
 	15000,
-	20000,
 	25000,
-	30000,
-	35000
+	50000,
+	75000,
+	77777,
+	100000,
+	123456,
+	500000,
+	777777,
+	1000000,
+	1234567,
+	2000000,
+	3000000,
+	4000000,
+	5000000,
+	6000000,
+	7000000,
+	7777777,
+	8000000,
+	9000000,
+	10000000,
+	12345678,
+	100000000,
+	123456789,
+	1000000000,
+	1234567890,
+	10000000000,
+	100000000000,
+	1000000000000,
+	10000000000000,
+	100000000000000,
+	1000000000000000,
+	10000000000000000,
 );
 ?>

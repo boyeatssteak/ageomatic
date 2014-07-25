@@ -26,6 +26,7 @@
 
 </script>
 <!-- END GOOGLE ANALYTICS TRACKING CODE -->
+<?php require('functions.php'); ?>
 </head>
 <body>
 	<div id="container">

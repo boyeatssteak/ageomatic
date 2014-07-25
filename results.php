@@ -1,5 +1,4 @@
 <?php require('header.php'); ?>
-	<?php require('functions.php'); ?>
 	<?php
 		if(empty($_GET['name'])) {
 			$name = "It";
@@ -15,7 +14,7 @@
 	?>
 </div>
 <div id="age">
-	<h3 class="age"><strong><?php echo $bday->age($now, '3', $secsIn); ?></strong> old</h3>
+	<h3 class="age"><?php echo $name . " is <strong>" . $bday->age($now, $in, $secsIn); ?></strong> old</h3>
 	<p>Age calculated on <?php echo $now->format('F j, Y') . " at " . $now->format('h:i:sa') ?> from a start date of <?php echo $bday->format('F j, Y') . " at " . $bday->format('h:i:sa') ?>.</p>
 	<h6>Not the right info? You can <a href="index.php">start over here</a>.</h6>
 	<p>Inconvenient units abound! <?php echo $name; ?> is...</p>
@@ -30,19 +29,8 @@
 	</table>
 </div><!-- #age -->
 <div id="dates">
-	<h3>(IN)SIGNIFICANT DATES</h3>
-	<p>For no reason in particular, you can also see some dates and their associated significant quantities of units after your selected start date.</p>
-	<h6>Current significant quantities are 
-	<?php
-		for($i = 0; $i < count($funIncs); $i++) {
-			if($i == (count($funIncs)-1)) {
-				echo "and " . number_format($funIncs[$i]);
-			} else {
-				echo number_format($funIncs[$i]) . ", ";
-			}
-		}
-	?>
-	. You can <a href="http://www.letterxdesign.com/contact.html">let me know</a> if you think I've missed any noteworthy quantities</h6>
+	<h3>COMING SOON</h3>
+	<p>For no reason in particular, you can also see the upcoming dates where <?php echo $name; ?> will be some significant number of <?php echo $secsIn[$in][1]; ?>s old.</p>
 	<form method="GET" action="#dates">
 		<input id="name" name="name" type="hidden" value="<?php echo $_GET ['name']; ?>">
 		<input id="bday" name="bday" type="hidden" value="<?php echo $_GET ['bday']; ?>">
@@ -62,13 +50,17 @@
 	<table>
 		<tbody>
 			<?php
-				if($_GET['in'] >= 0 && $_GET['in'] != "") {
-					$in = ($_GET['in']);
-					for ($i = 0; $i < count($funIncs); $i++) {
-						$dateArray = $bday->dateAfter($funIncs[$i], $in, $daysIn, $secsIn);
-						echo "<tr><td>" . $name . " " . $dateArray[1] . " <strong>" . number_format($funIncs[$i]) . " " . $secsIn[$in][1] . "s</strong> old on " . $dateArray[0] . "</td></tr>";
-					}
-				}
+				$unitsOld = $bday->ageNumOnly($now, $in, $secsIn);
+				$i = 0;
+				do {
+					$i++;
+				} while ($funIncs[$i] < $unitsOld);
+				$n = $i + 3;
+				do {
+					$dateArray = $bday->dateAfter($funIncs[$i], $in, $daysIn, $secsIn);
+					echo "<tr><td>" . $name . " " . $dateArray[1] . " <strong>" . number_format($funIncs[$i]) . " " . $secsIn[$in][1] . "s</strong> old on " . $dateArray[0] . "</td></tr>";
+					$i++;
+				} while ($i < $n && $i < count($funIncs));
 			?>
 		</tbody>
 	</table>

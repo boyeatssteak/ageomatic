@@ -41,6 +41,10 @@ h3.age {
 	font-size: 50px;
 	font-weight: 100;
 	margin-top: 0;
+	color: #222;
+}
+h3.age strong {
+	color: #ffac51;
 }
 h6 {
 	margin: 0;
