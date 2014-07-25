@@ -23,7 +23,7 @@
 			<div id="tell">Want to Share?</div>
 			<div id="twitter">
 				<?php if($_GET) { ?>
-					<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.letterxdesign.com/apex/ageomatic" data-text="#ageomatic tells me I'm <?php echo $bday->age($now, '3', $secsIn); ?> old." data-via="ageomatic">Tweet</a>
+					<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.letterxdesign.com/apex/ageomatic" data-text="#ageomatic tells me <?php echo $name; ?> is <?php echo $bday->age($now, '3', $secsIn); ?> old." data-via="ageomatic">Tweet</a>
 				<?php } else { ?>
 					<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.letterxdesign.com/apex/ageomatic" data-text="Find out how old you are with the #ageomatic" data-via="ageomatic">Tweet</a>
 				<?php } ?>
@@ -31,7 +31,7 @@
 			</div>
 		</section>
 		<section id="contact">
-			<a href="https://twitter.com/boy_eats_steak"><img src="img/twitter.png" /></a>&nbsp;
+			<a href="https://twitter.com/ageomatic"><img src="img/twitter.png" /></a>&nbsp;
 			<a href="https://github.com/sevx/ageomatic"><img src="img/github-mark.png" /></a>
 		</section>
 		<script>
