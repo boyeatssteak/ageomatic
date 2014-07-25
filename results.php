@@ -76,7 +76,7 @@
 		<input id="bday" name="bday" type="hidden" value="<?php echo $_GET ['bday']; ?>">
 		<input id="time" name="time" type="hidden" value="<?php echo $_GET ['time']; ?>">
 		<input id="in" name="in" type="hidden" value="<?php echo $_GET ['in']; ?>">
-		<input type="text" id="thisMany" name="thisMany" required>
+		<input type="tel" id="thisMany" name="thisMany" required>
 		<button type="submit">My Favorite!</button>
 	</form>
 	<?php 
