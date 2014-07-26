@@ -14,7 +14,7 @@
 	?>
 </div>
 <div id="age">
-	<h3 class="age"><?php echo $name . " is <strong>" . $bday->age($now, $in, $secsIn); ?></strong> old</h3>
+	<h3 class="age"><?php echo $name . " is <br /><strong>" . $bday->age($now, $in, $secsIn); ?></strong> old</h3>
 	<form method="GET" action="">
 		<input id="name" name="name" type="hidden" value="<?php echo $_GET ['name']; ?>">
 		<input id="bday" name="bday" type="hidden" value="<?php echo $_GET ['bday']; ?>">
