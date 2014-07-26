@@ -15,6 +15,25 @@
 </div>
 <div id="age">
 	<h3 class="age"><?php echo $name . " is <strong>" . $bday->age($now, $in, $secsIn); ?></strong> old</h3>
+	<form method="GET" action="">
+		<input id="name" name="name" type="hidden" value="<?php echo $_GET ['name']; ?>">
+		<input id="bday" name="bday" type="hidden" value="<?php echo $_GET ['bday']; ?>">
+		<input id="time" name="time" type="hidden" value="<?php echo $_GET ['time']; ?>">
+		<label for="in">Show me this ridiculousness in</label>
+		<select id="in" name="in">
+			<?php
+			for($i = 0; $i < count($secsIn); $i++) {
+				if($i == $in) {
+					echo "<option value='" . $i . "' selected>" . $secsIn[$i][1] . "s</option>";
+				} else {
+					echo "<option value='" . $i . "'>" . $secsIn[$i][1] . "s</option>";
+				}
+			}
+		?>
+		</select>
+		<input id="thisMany" name="thisMany" type="hidden" value="<?php echo $_GET ['thisMany']; ?>">
+		<button type="submit">&#10148;</button>
+	</form>
 	<p>Age calculated on <?php echo $now->format('F j, Y') . " at " . $now->format('h:i:sa') ?> from a start date of <?php echo $bday->format('F j, Y') . " at " . $bday->format('h:i:sa') ?>.</p>
 	<h6>Not the right info? You can <a href="index.php">start over here</a>.</h6>
 	<p>Inconvenient units abound! <?php echo $name; ?> is...</p>
@@ -35,25 +54,6 @@
 <div id="dates">
 	<h3>COMING SOON</h3>
 	<p>For no reason in particular, here are some upcoming dates where <?php echo $name; ?> will be some significant number of <?php echo $secsIn[$in][1]; ?>s old.</p>
-	<form method="GET" action="#dates">
-		<input id="name" name="name" type="hidden" value="<?php echo $_GET ['name']; ?>">
-		<input id="bday" name="bday" type="hidden" value="<?php echo $_GET ['bday']; ?>">
-		<input id="time" name="time" type="hidden" value="<?php echo $_GET ['time']; ?>">
-		<label for="in">Show me this ridiculousness in</label>
-		<select id="in" name="in">
-			<?php
-			for($i = 0; $i < count($secsIn); $i++) {
-				if($i == $in) {
-					echo "<option value='" . $i . "' selected>" . $secsIn[$i][1] . "s</option>";
-				} else {
-					echo "<option value='" . $i . "'>" . $secsIn[$i][1] . "s</option>";
-				}
-			}
-		?>
-		</select>
-		<input id="thisMany" name="thisMany" type="hidden" value="<?php echo $_GET ['thisMany']; ?>">
-		<button type="submit">&#10148;</button>
-	</form>
 	<table>
 		<tbody>
 			<?php
