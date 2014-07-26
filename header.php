@@ -4,7 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta charset=utf-8 />
 <title>age-o-matic</title>
-<meta name="description" content="Find something's age in seconds, minutes, days, weeks, hours, months or years." />
+<meta name="description" content="How old is something? The age-o-matic can tell you!" />
 <link rel="Shortcut Icon" type="image/ico" href="img/calc.ico" />
 <link rel="image_src" href="img/calc.png" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
