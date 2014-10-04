@@ -44,7 +44,7 @@ class Birthday extends DateTime { // these probably could have been added to the
 		echo $temp::diff($when)->format('%h') . "<-- Hours<br />";
 		if ($temp::diff($when)->format('%a') > 0 && $temp::diff($when)->format('%h') > 0) { // most cases, when $bday is more than 24 hours from $when
 			echo "More than 24<br />";
-			$daysBetween = $temp::diff($when)->format('%a') - 1; // -1 since adding seconds manually for fractional days $bday and $when
+			$daysBetween = $temp::diff($when)->format('%a'); // -1 since adding seconds manually for fractional days $bday and $when
 			echo $daysBetween . " <-- daysBetween<br />";
 			$output = (($daysBetween * 24 * 60 * 60) + $this->sToMidnight() + $this->sSinceMidnight($when)) / $secsIn[$units][0];
 		} else { // when $bday is less than 24 hours from $when
