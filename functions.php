@@ -40,10 +40,15 @@ class Birthday extends DateTime { // these probably could have been added to the
 	}
 	public function age($when, $units, $secsIn) { // determines age and returns in $units (specified as an index of $secsIn). Included $secsIn as parameter because I don't know how to access that variable from inside this object.
 		$temp = clone $this;
-		if ($temp::diff($when)->format('%a') > 0) { // most cases, when $bday is more than 24 hours from $when
-			$daysBetween = $temp::diff($when)->format('%a') - 1; // -1 since addings seconds manually for fractional days $bday and $when
+		echo $temp::diff($when)->format('%a') . "<-- Days<br />";
+		echo $temp::diff($when)->format('%h') . "<-- Hours<br />";
+		if ($temp::diff($when)->format('%a') > 0 && $temp::diff($when)->format('%h') > 0) { // most cases, when $bday is more than 24 hours from $when
+			echo "More than 24<br />";
+			$daysBetween = $temp::diff($when)->format('%a') - 1; // -1 since adding seconds manually for fractional days $bday and $when
+			echo $daysBetween . " <-- daysBetween<br />";
 			$output = (($daysBetween * 24 * 60 * 60) + $this->sToMidnight() + $this->sSinceMidnight($when)) / $secsIn[$units][0];
 		} else { // when $bday is less than 24 hours from $when
+			echo "Less than 24<br />";
 			if($temp->format('d') < $when->format('d')) { // if $bday and $when are different days
 				$daysBetween = 0;
 				$output = (($daysBetween * 24 * 60 * 60) + $this->sToMidnight() + $this->sSinceMidnight($when)) / $secsIn[$units][0];
@@ -84,7 +89,7 @@ class Birthday extends DateTime { // these probably could have been added to the
 			return round($output, 2);
 		}
 	}
-	public function dateAfter($increment, $units, $daysIn, $secsIn) { // determines date after user provided $increment number in a variety of $units. Included $secsIn/$daysIn as parameter because I don't know how to access that variable from inside this object.
+	public function dateAfter($increment, $units, $daysIn, $secsIn) { // determines date after the provided $increment number in a variety of $units. Included $secsIn/$daysIn as parameter because I don't know how to access that variable from inside this object.
 		$now = new DateTime ("now");
 		$temp = clone $this;
 		if($units == 6) { // to add years traditionally, rather than as a qty of days
@@ -93,9 +98,11 @@ class Birthday extends DateTime { // these probably could have been added to the
 			$temp->add(new DateInterval('P'.$increment.'M'));
 		} else {
 			$incDays = floor($increment / $daysIn[$units][0]);
+			echo $incDays . "<-- incDays<br />";
 			$temp->add(new DateInterval('P'.$incDays.'D'));
 			if($units < 4) {
 				$extraSecs = (bcmod($increment, $daysIn[$units][0])) * $secsIn[$units][0];
+				echo $extraSecs . "<-- extraSecs<br />";
 				$temp->add(new DateInterval('PT'.$extraSecs.'S'));
 			}	
 		}
