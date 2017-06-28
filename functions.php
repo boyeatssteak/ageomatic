@@ -95,7 +95,7 @@ class Birthday extends DateTime { // these probably could have been added to the
 			$incDays = floor($increment / $daysIn[$units][0]);
 			$temp->add(new DateInterval('P'.$incDays.'D'));
 			if($units < 4) {
-				$extraSecs = (bcmod($increment, $daysIn[$units][0])) * $secsIn[$units][0];
+				$extraSecs = ($increment % $daysIn[$units][0]) * $secsIn[$units][0];
 				$temp->add(new DateInterval('PT'.$extraSecs.'S'));
 			}	
 		}
