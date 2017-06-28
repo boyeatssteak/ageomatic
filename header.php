@@ -9,7 +9,7 @@
 <link rel="Shortcut Icon" type="image/ico" href="img/calc.ico" />
 <link rel="image_src" href="img/calc.png" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
-<link href='http://fonts.googleapis.com/css?family=Raleway:300,500,600' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Raleway:300,500,600' rel='stylesheet' type='text/css'>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <!-- BEGIN GOOGLE ANALYTICS TRACKING CODE -->
