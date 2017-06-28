@@ -4,7 +4,7 @@
 		<?php if($_GET) { ?>
 			<section id="timezones">
 				<div class="content">
-					<h6>NOTE: I have not yet made the necessary updates to accommodate timezones in this revision, so for the time being, you'll need to make manual adjustments to the data submitted or retrieved to accommodate for your start and current location timezones. Calculations are based in the Alaska timezone, where it is currently <?php echo $now->format('F j, Y h:i:sa') ?></h6>
+					<h6>NOTE: I have not yet made the necessary updates to accommodate timezones in this revision, so for the time being, you'll need to make manual adjustments to the data submitted or retrieved to accommodate for your start and current location timezones. Calculations are based in the Pacific timezone, where it is currently <?php echo $now->format('F j, Y h:i:sa') ?></h6>
 				</div>
 			</section>
 		<?php } ?>

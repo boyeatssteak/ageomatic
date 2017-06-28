@@ -13,14 +13,14 @@ $secsIn = array( // quantity of seconds for 1 unit, and the unit name
 	array(60 * 60 * 24 * 365.25 / 12, "month"),
 	array(60 * 60 * 24 * 365.25, "year")
 );
-$daysIn = array( // quantity of days for 1 unit, and the unit name
-	array(1 * 24 * 60 * 60, "second"),
-	array(1 * 24 * 60, "minute"),
-	array(1 * 24, "hour"),
-	array(1, "day"),
-	array(1 / 7, "week"),
-	array(365.25 / 12, "month"),
-	array(365.25, "year")
+$daysIn = array( // quantity of units for 1 day, and the unit name
+	array(1 * 24 * 60 * 60, "second"), //seconds in a day
+	array(1 * 24 * 60, "minute"), // minutes in a day
+	array(1 * 24, "hour"), // hours in a day
+	array(1, "day"), // days in a day
+	array(1 / 7, "week"), // weeks in a day
+	array(365.25 / 12, "month"), // days in a month?
+	array(365.25, "year") // days in a year?
 );
 class Birthday extends DateTime { // these probably could have been added to the DateTime object model...
 	public function sToMidnight() { // determines the qty of seconds after birth to following midnight.
@@ -29,31 +29,26 @@ class Birthday extends DateTime { // these probably could have been added to the
 		$temp->setTime(00,00,00);
 		return $temp->getTimestamp() - $this->getTimestamp();
 	}
-	public function sSinceMidnight($when) { // determines the qty of seconds from the previous midnight to specified time
-		$temp = clone $when;
+	public function sSinceMidnight($endTime) { // determines the qty of seconds from the previous midnight to $endTime, which is typically 'now'
+		$temp = clone $endTime;
 		$temp->setTime(00,00,00);
-		$hours = $when->format('H');
-		$minutes = $when->format('i');
-		$seconds = $when->format('s');
+		$hours = $endTime->format('H');
+		$minutes = $endTime->format('i');
+		$seconds = $endTime->format('s');
 		$totSecs = ((($hours * 60) + $minutes) * 60) + $seconds;
 		return $totSecs;
 	}
-	public function age($when, $units, $secsIn) { // determines age and returns in $units (specified as an index of $secsIn). Included $secsIn as parameter because I don't know how to access that variable from inside this object.
+	public function age($endTime, $units, $secsIn) { // determines age and returns in $units (specified as an index of $secsIn). Included $secsIn as parameter because I don't know how to access that variable from inside this object.
 		$temp = clone $this;
-		echo $temp::diff($when)->format('%a') . "<-- Days<br />";
-		echo $temp::diff($when)->format('%h') . "<-- Hours<br />";
-		if ($temp::diff($when)->format('%a') > 0 && $temp::diff($when)->format('%h') > 0) { // most cases, when $bday is more than 24 hours from $when
-			echo "More than 24<br />";
-			$daysBetween = $temp::diff($when)->format('%a'); // -1 since adding seconds manually for fractional days $bday and $when
-			echo $daysBetween . " <-- daysBetween<br />";
-			$output = (($daysBetween * 24 * 60 * 60) + $this->sToMidnight() + $this->sSinceMidnight($when)) / $secsIn[$units][0];
-		} else { // when $bday is less than 24 hours from $when
-			echo "Less than 24<br />";
-			if($temp->format('d') < $when->format('d')) { // if $bday and $when are different days
+		if ($temp::diff($endTime)->format('%a') > 0) { // most cases, when $bday is more than 24 hours from $endTime,  && $temp::diff($endTime)->format('%h') > 0
+			$daysBetween = $temp::diff($endTime)->format('%a') - 1; // -1 since adding seconds manually for fractional days $bday and $endTime
+			$output = (($daysBetween * 24 * 60 * 60) + $this->sToMidnight() + $this->sSinceMidnight($endTime)) / $secsIn[$units][0];
+		} else { // when $bday is less than 24 hours from $endTime
+			if($temp->format('d') < $endTime->format('d')) { // if $bday and $endTime are different days
 				$daysBetween = 0;
-				$output = (($daysBetween * 24 * 60 * 60) + $this->sToMidnight() + $this->sSinceMidnight($when)) / $secsIn[$units][0];
-			} else { // if $bday and $when are same day
-				$output = ($when->getTimestamp() - $temp->getTimestamp()) / $secsIn[$units][0];
+				$output = (($daysBetween * 24 * 60 * 60) + $this->sToMidnight() + $this->sSinceMidnight($endTime)) / $secsIn[$units][0];
+			} else { // if $bday and $endTime are same day
+				$output = ($endTime->getTimestamp() - $temp->getTimestamp()) / $secsIn[$units][0];
 			}
 		}
 		if($units < 4) {
@@ -70,17 +65,17 @@ class Birthday extends DateTime { // these probably could have been added to the
 			}
 		}
 	}
-	public function ageNumOnly($when, $units, $secsIn) { // determines age and returns in $units (specified as an index of $secsIn). Included $secsIn as parameter because I don't know how to access that variable from inside this object.
+	public function ageNumOnly($endTime, $units, $secsIn) { // determines age and returns in $units (specified as an index of $secsIn). Included $secsIn as parameter because I don't know how to access that variable from inside this object.
 		$temp = clone $this;
-		if ($temp::diff($when)->format('%a') > 0) { // most cases, when $bday is more than 24 hours from $when
-			$daysBetween = $temp::diff($when)->format('%a') - 1; // -1 since addings seconds manually for fractional days $bday and $when
-			$output = (($daysBetween * 24 * 60 * 60) + $this->sToMidnight() + $this->sSinceMidnight($when)) / $secsIn[$units][0];
-		} else { // when $bday is less than 24 hours from $when
-			if($temp->format('d') < $when->format('d')) { // if $bday and $when are different days
+		if ($temp::diff($endTime)->format('%a') > 0) { // most cases, when $bday is more than 24 hours from $endTime
+			$daysBetween = $temp::diff($endTime)->format('%a') - 1; // -1 since addings seconds manually for fractional days $bday and $endTime
+			$output = (($daysBetween * 24 * 60 * 60) + $this->sToMidnight() + $this->sSinceMidnight($endTime)) / $secsIn[$units][0];
+		} else { // when $bday is less than 24 hours from $endTime
+			if($temp->format('d') < $endTime->format('d')) { // if $bday and $endTime are different days
 				$daysBetween = 0;
-				$output = (($daysBetween * 24 * 60 * 60) + $this->sToMidnight() + $this->sSinceMidnight($when)) / $secsIn[$units][0];
-			} else { // if $bday and $when are same day
-				$output = ($when->getTimestamp() - $temp->getTimestamp()) / $secsIn[$units][0];
+				$output = (($daysBetween * 24 * 60 * 60) + $this->sToMidnight() + $this->sSinceMidnight($endTime)) / $secsIn[$units][0];
+			} else { // if $bday and $endTime are same day
+				$output = ($endTime->getTimestamp() - $temp->getTimestamp()) / $secsIn[$units][0];
 			}
 		}
 		if($units < 4) {
@@ -98,11 +93,9 @@ class Birthday extends DateTime { // these probably could have been added to the
 			$temp->add(new DateInterval('P'.$increment.'M'));
 		} else {
 			$incDays = floor($increment / $daysIn[$units][0]);
-			echo $incDays . "<-- incDays<br />";
 			$temp->add(new DateInterval('P'.$incDays.'D'));
 			if($units < 4) {
 				$extraSecs = (bcmod($increment, $daysIn[$units][0])) * $secsIn[$units][0];
-				echo $extraSecs . "<-- extraSecs<br />";
 				$temp->add(new DateInterval('PT'.$extraSecs.'S'));
 			}	
 		}
